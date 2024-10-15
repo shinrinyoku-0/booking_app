@@ -17,7 +17,7 @@ import {
 } from "@tanstack/react-router";
 import { type SubmitHandler, useForm } from "react-hook-form";
 
-import Logo from "/assets/images/061ae96ad62a3f5739c22192e041cb22 1.png";
+import Logo from "/assets/images/Milestone.M.png";
 import type { UserRegister } from "../client";
 import useAuth, { isLoggedIn } from "../hooks/useAuth";
 import { confirmPasswordRules, emailPattern, passwordRules } from "../utils";
