@@ -1,5 +1,5 @@
 import uuid
-
+from uuid import UUID
 from pydantic import EmailStr
 from sqlmodel import Field, Relationship, SQLModel
 from datetime import time
@@ -122,3 +122,18 @@ class Flight(SQLModel, table=True):
     time_duration: int
     start_time: time
     end_time: time
+    
+    
+from sqlmodel import SQLModel, Field
+from typing import Optional
+from datetime import datetime
+
+class Ticket(SQLModel, table=True):
+    __tablename__ = "ticket"
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    customer_id: UUID = Field(foreign_key="user.id")
+    flight_id: str = Field(foreign_key="flights.flight_id")  # Make sure this matches
+    booking_date: datetime = Field(default_factory=datetime.utcnow)
+    price: float
+    status: str = Field(default="confirmed")
