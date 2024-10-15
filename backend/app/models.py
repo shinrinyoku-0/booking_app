@@ -2,7 +2,7 @@ import uuid
 
 from pydantic import EmailStr
 from sqlmodel import Field, Relationship, SQLModel
-
+from datetime import time
 
 # Shared properties
 class UserBase(SQLModel):
@@ -112,3 +112,13 @@ class TokenPayload(SQLModel):
 class NewPassword(SQLModel):
     token: str
     new_password: str = Field(min_length=8, max_length=40)
+
+class Flight(SQLModel, table=True):
+    __tablename__ = "flights"
+    flight_id: str = Field(primary_key=True, max_length=5)
+    origin: str = Field(max_length=50)
+    destination: str = Field(max_length=50)
+    airline: str = Field(max_length=50)
+    time_duration: int
+    start_time: time
+    end_time: time
